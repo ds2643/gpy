@@ -55,6 +55,8 @@ class Entry:
 		self.name = str(name) #bad... find another way to ref safely
 	def showFields():
 		''' shows all fields of which this entry is a member'''
+	def revealDegree(self,field):
+		return field.interface.degree(name)
 	def joinField(field): #allow for variable arguments
 		''' add to field '''
 		if self.name in field:
@@ -62,9 +64,6 @@ class Entry:
 		else:
 			field.interface.add_node(str(name))
 		#if field.addEntry(self)
-	def revealDegree(self,field):
-	''' ? '''
-		return field.interface.degree(name)
 
 #list of all instances currently open of field/entry
 
@@ -89,16 +88,15 @@ def read(filename):
 	rawContent = []
 	for line in fileHandle:
 		rawContent.append(line)
-	specialMarkers = {$f,$E}
+	specialMarkers = {"$e","$f"}
+	#break this into a f => what did I mean here? just collapse repeated material into single fx
+	rawEntries = []
+	for entryLine in [line.startswith("$e") for line in rawContent]:
+		rawEntries.append(entryLine[2:]) #delete prepending "$e" 
 	rawFields = []
-	#break this into a f => what did I mean here?
 	for fieldLine in [line.startswith("$f") for line in rawContent]:
 		rawFields.append(fieldLine[2:]) #deleted prepending "$f", but "_tag_" still an issue for processing 
 	fileHandle.close()
-	rawEntries = []
-    for entryLine in [line.startswith("$e") for line in rawContent]:
-        rawEntries.append() #delete prepending "$e" 
-    fileHandle.close()
 	fsToRuntime()
 	esToRuntime()
 
@@ -111,7 +109,7 @@ def esToRuntime(listEntries):
 	''' scaffolding for converting field representation from file to runtime object '''
 	print listEntries
 
-def audit(data.fields,saveName=""):
+def audit(fields, saveName=""):
 	''' draws all current graphs,overlapping '''
 	for field in data.fields: #hopefully this works
 		nx.draw(field.interface) #test
