@@ -1,7 +1,10 @@
 '''
-standing issue:
-1. named references in entrySpace
-2. killEntry doesn't work yet
+1. named referrences in entrySpace
+2. coerce plt to plot overlapping nodes
+3. incomplete storage mechanism
+4. refactor Field.addEntry control logic
+5. storage scheme needed
+6. consider query scheme
 '''
 
 import networkx as nx
@@ -14,7 +17,7 @@ from collections import defaultdict
 	#return str(gc.get_referrers(obj)[0])[-12:-2] #output something like "0xafb07c4c"
 
 class EntrySpace:
-	''' atomic identity. represented by graph node. '''
+	''' shared set of nodes among graphs '''
 	#necessary to sync nodes across several graphs
 	def __init__(self,entries):
 		#self.entries = defaultdict(lambda: []).fromkeys(entries)
@@ -29,7 +32,7 @@ class EntrySpace:
 		return ass_fields
 
 class Field:
-	''' client-side field interface'''
+	''' graph interface'''
 	def __init__(self, entrySpace, directed=0):
 		''' defaults to symmetric relations... directed = 1 for assymetric relations '''
 		#super(Field, self)
