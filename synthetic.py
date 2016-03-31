@@ -1,6 +1,6 @@
 '''
 standing issue:
-1. named referrences in entrySpace
+1. named references in entrySpace
 2. killEntry doesn't work yet
 '''
 
