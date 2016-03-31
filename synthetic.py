@@ -11,7 +11,7 @@ from collections import defaultdict
 #def grab_name(obj):
 	#''' hacky way to grab object referrences '''
 	#import gc
-	#return str(gc.get_referrers(obj)[0])[-12:-2] #output something like "0xafb07c4c"	
+	#return str(gc.get_referrers(obj)[0])[-12:-2] #output something like "0xafb07c4c"
 
 class EntrySpace:
 	''' atomic identity. represented by graph node. '''
@@ -53,7 +53,7 @@ class Field:
 		return self.interface.order()
 	def addEntry(self,entry):
 		''' add entry to field '''
-		self.interface.add_node(entry) 
+		self.interface.add_node(entry)
 		if self.entrySpace.entries.has_key(entry):
 			if self.entrySpace.entries[entry] == None:
 				self.entrySpace.entries[entry] = [str(self)] #fix to add name of referrenced field instance
@@ -78,19 +78,12 @@ class Field:
 		''' delete entry from this field'''
 		assert self.isMember(entry), "you cannot remove an entry from this field that is not a member!"
 		self.interface.remove_node(entry)
-
-	def killEntry(self,entry):
-		''' deletes collection of multiple entries'''
-		self.interface.remove_nodes_from(entry)
 	def countRelations(self):
 		''' returns int number of connections specified for this field'''
 		return self.interface.size()
 	def prune(self):
 		''' kill all defined relationships between entries'''
 		self.interface.clear()
-	def clone(self):
-		''' create copy of this field '''
-		self.interface.copy()
 
 def write(data): #how is this data ag'd?
 	'''write current data to some file as adjacency lists'''
@@ -136,10 +129,9 @@ def esToRuntime(listEntries):
 
 def audit(fields, saveName=""):
 	''' draws all current graphs, overlapping '''
-	for field in data.fields: #hopefully this works
+	for field in fields: #hopefully this works
 		nx.draw(field.interface) #test
 	plt.show()
 	if saveName!="": #use better screening criteria for valid filename
 		plt.saveFig(str(saveName) + ".png")
 		print "visual representation saved as: " + str(saveName)
-
