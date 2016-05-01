@@ -1,5 +1,5 @@
 # Synthetic
-Synthetic is a graph database written for Python. At the moment, NetworkX (https://networkx.github.io/) provides the graph interface upon which this project is based. However, I hope to replace NetworkX with my own graph system, not for any shortcoming, but because this project is intended as a learning exercise.
+Synthetic is a graph database written for Python. Previously, NetworkX (https://networkx.github.io/) provided the graph interface upon which this project was based. However, I am in the process of replacing NetworkX with my own graph system called amg, not for any shortcoming of NX, but because this project is intended as a learning exercise.
 
 # Contents
 synthetic.py:
