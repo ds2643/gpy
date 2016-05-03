@@ -13,21 +13,21 @@ class Graph:
 		self.meta = []
 	def __repr__(self):
 		return self.label 
-	def add_node(self,label):
+	def add_node(self,val):
 		''' insert new node into graph-- pass if label already in use '''
-		if (not self.meta.__contains__(label)):
-			self.meta.append(label)
+		if (not self.meta.__contains__(val)):
+			self.meta.append(val)
 			self.adj_mat = np.resize(self.adj_mat,(len(self.meta),len(self.meta)))
-	def addEdge(self,x,y,val=1):
+	def edge(self,n1,n2,w=1):
 		''' specify value for edge... defaults to True/1 '''
-		try: x in self.meta and y in self.meta
+		try: n1 in self.meta and n2 in self.meta
 		except ValueError: "must add edges individually before setting edge"
-		i = self.meta.index(x)
-		j = self.meta.index(y)
-		self.adj_mat[i][j] = val
+		i = self.meta.index(n1)
+		j = self.meta.index(n1)
+		self.adj_mat[i][j] = w
 		if (not self.directed):
-			self.adj_mat[j][i] = val
-	def delEdge(self,x,y):
+			self.adj_mat[j][i] = w
+	def del_edge(self,x,y):
 		''' remove edge by setting to default value of 0 weight or False '''
 		i = self.meta.index(x)
 		j = self.meta.index(y)
@@ -38,14 +38,13 @@ class Graph:
 		''' print an eqv adj list representation '''
 		adj_list = dict()
 		for i,x in enumerate(self.meta):
-			#adjList[x]=set([self.nodes[j] for j,y in enumerate(self.adjMat[i]) if y!=0])
 			adj_set = set()
-			for j,y in enumerate(self.adjMat[i]):
+			for j,y in enumerate(self.adj_mat[i]):
 				if y != 0:
 					adj_set.add(self.meta[j])
 				else: pass
-			adj_list[x] = list(adjSet)
-		return adjList
+			adj_list[x] = list(adj_set)
+		return adj_list
 	def adj_nodes(self,node):
 		''' outputs list of adjacent vertices to node '''
 		return self.adj_list()[node]
@@ -58,14 +57,14 @@ class Graph:
 	def audit(self): #add metadata labels for rows
 		''' intended to print out graph along with meta data, but not programmed to show row data, even though row and column data are always the same '''
 		print self.meta
-		print self.adj_mat()
-	def isWeighted(self):
+		print self.adj_mat
+	def is_weighted(self):
 		''' returns True if graph is weighted '''
 		return self.weight
-	def isDirected(self):
+	def is_directed(self):
 		''' returns True if graph is directed '''
 		return self.directed
-	def isConnected(self):
+	def is_connected(self):
 		''' for all nodes in the graph, can any node be reached from any other node? '''
 		pass
 	def is_tree(self):
