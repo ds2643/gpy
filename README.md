@@ -1,5 +1,5 @@
-# Synthetic
-Synthetic is a graph database written for Python. Previously, NetworkX (https://networkx.github.io/) provided the graph interface upon which this project was based. However, I am in the process of replacing NetworkX with my own graph system called amg, not for any shortcoming of NX, but because this project is intended as a learning exercise.
+# GPY
+gpy is a graph utility written for Python. Previously, NetworkX (https://networkx.github.io/) provided the graph interface upon which this project was based. However, I am in the process of replacing NetworkX with my own graph system called amg, not for any shortcoming of NX, but because this project is intended as a learning exercise.
 
 # Contents
 main.py, the module from which the project runs
