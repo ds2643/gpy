@@ -15,5 +15,5 @@ isomer_docs.py: prior attempt at documenting the isomer graph interface through 
 2. periodically add algorithmic support for trees and graphs (e.g., breadth first search, minimum spanning tree)
 3. extend algorithmic support to multiple graphs in a node space
 
-# Dependancies
+# Dependencies
 Numpy, NetworkX (void), MatPlotLib
